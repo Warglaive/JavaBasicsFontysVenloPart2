@@ -113,7 +113,7 @@ deps-jar:
 -compile-depend:
 
 -do-compile:
-    [javac] Compiling 1 source file to C:\Users\attra\Documents\NetBeansProjects\fontys-sebivenlo-fontys-sebivenlo-PRC12_GROUP4\week7-week7_04.ThingSuitcaseAndContainer\build\classes
+    [javac] Compiling 2 source files to C:\Users\attra\Documents\NetBeansProjects\fontys-sebivenlo-fontys-sebivenlo-PRC12_GROUP4\week7-week7_04.ThingSuitcaseAndContainer\build\classes
     [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
     [javac] 1 warning
 

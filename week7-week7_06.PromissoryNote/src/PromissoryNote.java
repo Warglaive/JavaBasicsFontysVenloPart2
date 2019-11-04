@@ -6,28 +6,27 @@ import java.util.HashMap;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Warglaive
  */
 public class PromissoryNote {
-    
-    private HashMap<String, Double> note;
-    
-    public PromissoryNote(){
-        this.note = new HashMap<String, Double>();
+
+    private HashMap<String, Double> people;
+
+    public PromissoryNote() {
+        this.people = new HashMap<String, Double>();
     }
-    
-    public void setLoan(String toWhom, double value){
-        note.put(toWhom, value);
+
+    public void setLoan(String toWhom, double value) {
+        this.people.put(toWhom, value);
     }
-    
-    public double howMuchIsTheDebt(String whose){
-        if(this.note.containsKey(whose)){
-            return note.get(whose);
-        } else {
-            return 0.0;
+
+    public double howMuchIsTheDebt(String whose) {
+        if (this.people.containsKey(whose)) {
+            return this.people.get(whose);
         }
+        return 0;
     }
+
 }
