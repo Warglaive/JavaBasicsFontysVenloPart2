@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
@@ -19,9 +20,23 @@ public class Dictionary {
     }
 
     public String translate(String word) {
+        return this.wordTranslation.get(word);
+
     }
 
     public void add(String word, String translation) {
+        this.wordTranslation.put(word, translation);
+    }
 
+    public int amountOfWords() {
+        return this.wordTranslation.size();
+    }
+
+    public ArrayList<String> translationList() {
+        ArrayList<String> list = new ArrayList<String>();
+        for (String string : this.wordTranslation.keySet()) {
+            list.add(string + " = " + this.wordTranslation.get(string));
+        }
+        return list;
     }
 }
