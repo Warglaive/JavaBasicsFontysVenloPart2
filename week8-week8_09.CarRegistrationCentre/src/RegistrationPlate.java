@@ -16,4 +16,34 @@ public class RegistrationPlate {
         return country + " " + regCode;
     }
 
+    @Override
+    public int hashCode() {
+        if (this.regCode == null) {
+            return 7;
+        }
+
+        return (this.country.hashCode() + this.regCode.hashCode());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RegistrationPlate other = (RegistrationPlate) obj;
+        if ((this.regCode == null) ? (other.regCode != null) : !this.regCode.equals(other.regCode)) {
+            return false;
+        }
+        if ((this.country == null) ? (other.country != null) : !this.country.equals(other.country)) {
+            return false;
+        }
+        return true;
+    }
+
 }
