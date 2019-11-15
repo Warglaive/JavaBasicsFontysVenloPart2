@@ -20,8 +20,11 @@ public class PointsCalculator {
     private final int judgeHighestVote = 20;
     private final int judgesCount = 5;
     private ArrayList<Participant> Participants;
+    private ArrayList<Integer> judgesVotes;
+    private ArrayList<Integer> jumpLengths;
 
     public PointsCalculator() {
+        this.judgesVotes = new ArrayList<Integer>();
         this.Participants = new ArrayList<Participant>();
     }
 
@@ -30,6 +33,13 @@ public class PointsCalculator {
     }
 
     public void Start() {
+        CalcJumpingOrder(this.Participants);
+        for (Participant participant : this.Participants) {
+            int points = CalculateJumperTotalPoints();
+            participant.SetPoints(points);
+            participant.SetJudgesVotes(this.judgesVotes);
+            participant.SetJumpLengths(this.jumpLengths);
+        }
 
     }
 
@@ -37,7 +47,7 @@ public class PointsCalculator {
         Random r = new Random();
         int jumpLength = GetJumpLength(r);
         int judgesVote = GetJudgesVote(r);
-        int totalPoints=jumpLength+judgesVote;
+        int totalPoints = jumpLength + judgesVote;
         return totalPoints;
     }
 
@@ -53,14 +63,21 @@ public class PointsCalculator {
         for (Integer allVote : allVotes) {
             result += allVote;
         }
+        this.judgesVotes = allVotes;
         return result;
     }
 
     public int GetJumpLength(Random r) {
-        return r.nextInt(this.highestJumpLength - this.lowestJumpLength) + this.lowestJumpLength;
+        int jumpLength = r.nextInt(this.highestJumpLength - this.lowestJumpLength) + this.lowestJumpLength;
+        this.jumpLengths.add(jumpLength);
+        return jumpLength;
     }
 
     public ArrayList<Participant> GetParticipants() {
         return this.Participants;
+    }
+
+    private void CalcJumpingOrder(ArrayList<Participant> Participants) {
+        Collections.sort(this.Participants, new CustomComparator());
     }
 }
