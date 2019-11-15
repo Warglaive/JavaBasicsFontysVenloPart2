@@ -15,31 +15,31 @@ import java.util.Map;
  */
 public class ShoppingBasket {
 
-    private List<Purchase> basket;
+    private Map<String, Purchase> basket;
 
     public ShoppingBasket() {
-        this.basket = new ArrayList<Purchase>();
+        this.basket = new HashMap<String, Purchase>();
     }
 
     public void add(String product, int price) {
-        for (Purchase purchase : this.basket) {
-           
+        if (this.basket.containsKey(product)) {
+            this.basket.get(product).increaseAmount();
+        } else {
+            this.basket.put(product, new Purchase(product, 1, price));
         }
-        Purchase purchase = new Purchase(product, price, 1);
-        this.basket.add(purchase);
     }
 
     public int price() {
         int sum = 0;
-        for (Purchase purchase : this.basket) {
+        for (Purchase purchase : this.basket.values()) {
             sum += purchase.price();
         }
         return sum;
     }
 
     public void print() {
-        for (Purchase purchase : this.basket) {
-            purchase.toString();
+        for (Purchase purchase : this.basket.values()) {
+            System.out.println(purchase.toString());
         }
     }
 }

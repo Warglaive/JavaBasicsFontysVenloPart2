@@ -1,4 +1,5 @@
-public class Person {
+
+public class Person implements Comparable<Person> {
 
     private int salary;
     private String name;
@@ -16,9 +17,18 @@ public class Person {
         return salary;
     }
 
-
     @Override
     public String toString() {
         return name + " " + salary;
+    }
+
+    public int compareTo(Person other) {
+        if (this.salary == other.salary) {
+            return 0;
+        } else if (this.salary < other.salary) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }

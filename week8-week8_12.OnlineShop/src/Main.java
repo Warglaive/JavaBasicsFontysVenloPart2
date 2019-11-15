@@ -1,24 +1,19 @@
 
+import java.util.Scanner;
+
+
 public class Main {
 
     public static void main(String[] args) {
         //Exercise 12.7: Only One Purchase Object for One Product
 
-        ShoppingBasket basket = new ShoppingBasket();
-        basket.add("milk", 3);
-        basket.print();
-        System.out.println("basket price: " + basket.price() + "\n");
+        Storehouse store = new Storehouse();
+        store.addProduct("coffee", 5, 10);
+        store.addProduct("milk", 3, 20);
+        store.addProduct("milkbutter", 2, 55);
+        store.addProduct("bread", 7, 8);
 
-        basket.add("buttermilk", 2);
-        basket.print();
-        System.out.println("basket price: " + basket.price() + "\n");
-
-        basket.add("milk", 3);
-        basket.print();
-        System.out.println("basket price: " + basket.price() + "\n");
-
-        basket.add("milk", 3);
-        basket.print();
-        System.out.println("basket price: " + basket.price() + "\n");
+        Shop shop = new Shop(store, new Scanner(System.in));
+        shop.manage("Pekka");
     }
 }
