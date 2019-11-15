@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,6 +23,10 @@ public class Participant {
         this.Points = 0;
         this.JumpLengths = new ArrayList<Integer>();
         this.JudgesVotes = new ArrayList<Integer>();
+    }
+
+    public String GetName() {
+        return this.Name;
     }
 
     public void SetPoints(int points) {

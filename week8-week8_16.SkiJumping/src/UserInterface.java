@@ -22,6 +22,34 @@ public class UserInterface {
     }
 
     public void Start(Scanner scanner) {
+        TakeParticipantNames(scanner);
+        //next phase
+        System.out.println("The tournament begins!");
+        System.out.print("Write \"jump\" to jump; otherwise you quit: jump");
+        String command = scanner.nextLine();
+        int roundCounter = 1;
+        while (command == "jump") {
+            System.out.println("Round " + roundCounter);
+            //magiq
+            this.PointsCalculator.Start();
+            PrintJumpOrder();
+            PrintCurrentRound(roundCounter);
+            System.out.print("Write \"jump\" to jump; otherwise you quit: jump");
+            command = scanner.nextLine();
+            roundCounter++;
+        }
+    }
+
+    public void PrintJumpOrder() {
+        System.out.println("Jumping order:");
+        ArrayList<Participant> participants = this.PointsCalculator.GetParticipants();
+        int counter = 1;
+        for (Participant participant : participants) {
+            System.out.println(counter + ". " + participant.GetName() + " (" + participant.GetPoints() + " points)");
+        }
+    }
+
+    public void TakeParticipantNames(Scanner scanner) {
         System.out.println("The tournament begins!");
         System.out.println("Write the names of the participants one at a time; an empty string brings you to the jumping phase.");
         System.out.print("  Participant name: ");
@@ -32,18 +60,16 @@ public class UserInterface {
             System.out.print("  Participant name: ");
             participantName = scanner.nextLine();
         }
-        //next phase
-        System.out.println("The tournament begins!");
-        System.out.print("Write \"jump\" to jump; otherwise you quit: jump");
-        String command = scanner.nextLine();
-        int roundCounter = 1;
-        while (command == "jump") {
-            System.out.println("Round " + roundCounter);
-            //magiq
-            this.PointsCalculator.Start();
-            System.out.print("Write \"jump\" to jump; otherwise you quit: jump");
-            command = scanner.nextLine();
-            roundCounter++;
+    }
+
+    private void PrintCurrentRound(int roundCounter) {
+        System.out.println("Results of round " + roundCounter);
+        ArrayList<Participant> participants = this.PointsCalculator.GetParticipants();
+
+        for (Participant participant : participants) {
+            System.out.println("  " + participant.GetName());
+            //print jumpLength somehow
+            System.out.println("    length: ");
         }
     }
 }

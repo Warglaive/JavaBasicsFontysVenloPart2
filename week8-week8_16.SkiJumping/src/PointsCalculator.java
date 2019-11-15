@@ -33,7 +33,8 @@ public class PointsCalculator {
     }
 
     public void Start() {
-        CalcJumpingOrder(this.Participants);
+        CalcJumpingOrder(); //check how jumps first
+        //Add points and everything else to the participants
         for (Participant participant : this.Participants) {
             int points = CalculateJumperTotalPoints();
             participant.SetPoints(points);
@@ -77,7 +78,7 @@ public class PointsCalculator {
         return this.Participants;
     }
 
-    private void CalcJumpingOrder(ArrayList<Participant> Participants) {
+    private void CalcJumpingOrder() {
         Collections.sort(this.Participants, new CustomComparator());
     }
 }
