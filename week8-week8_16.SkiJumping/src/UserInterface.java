@@ -25,16 +25,16 @@ public class UserInterface {
         TakeParticipantNames(scanner);
         //next phase
         System.out.println("The tournament begins!");
-        System.out.print("Write \"jump\" to jump; otherwise you quit: jump");
+        System.out.print("Write \"jump\" to jump; otherwise you quit: ");
         String command = scanner.nextLine();
         int roundCounter = 1;
-        while (command == "jump") {
+        while (command.equals("jump")) {
             System.out.println("Round " + roundCounter);
             //magiq
             this.PointsCalculator.Start();
             PrintJumpOrder();
             PrintCurrentRound(roundCounter);
-            System.out.print("Write \"jump\" to jump; otherwise you quit: jump");
+            System.out.print("Write \"jump\" to jump; otherwise you quit: ");
             command = scanner.nextLine();
             roundCounter++;
         }
@@ -69,7 +69,7 @@ public class UserInterface {
         for (Participant participant : participants) {
             System.out.println("  " + participant.GetName());
             //print jumpLength somehow
-            System.out.println("    length: ");
+            // System.out.println("    length: " + participant.getLength());
         }
     }
 }

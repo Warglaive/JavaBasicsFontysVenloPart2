@@ -15,6 +15,7 @@ public class Participant {
 
     private String Name;
     private int Points;
+    private int Length;
     private ArrayList<Integer> JumpLengths;
     private ArrayList<Integer> JudgesVotes;
 
