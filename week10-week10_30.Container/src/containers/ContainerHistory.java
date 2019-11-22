@@ -30,7 +30,8 @@ public class ContainerHistory {
     public String toString() {
         return this.HistoryContainer.toString();
     }
-    public double minValue(){
+
+    public double minValue() {
         //IMPLEMENT IT AFTER GYM!!!
     }
 }
