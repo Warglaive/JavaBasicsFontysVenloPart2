@@ -1,14 +1,21 @@
 
+import containers.ContainerHistory;
 import containers.ProductContainer;
+import containers.ProductContainerRecorder;
 
 public class Main {
 
     public static void main(String[] args) {
-        ProductContainer juice = new ProductContainer("Juice", 1000.0);
-        juice.addToTheContainer(1000.0);
+        // the well known way:
+        ProductContainerRecorder juice = new ProductContainerRecorder("Juice", 1000.0, 1000.0);
         juice.takeFromTheContainer(11.3);
         System.out.println(juice.getName()); // Juice
         juice.addToTheContainer(1.0);
-        System.out.println(juice);
+        System.out.println(juice); // Juice: volume = 989.7, free space 10.3
+
+// history() does not work properly, yet:
+        System.out.println(juice.history()); // [1000.0]
+        // in fact, we only retrieve the original value which was given to the constructor...
+
     }
 }
