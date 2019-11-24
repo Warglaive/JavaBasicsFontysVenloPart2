@@ -13,7 +13,7 @@ import containers.ProductContainer;
  */
 public class ProductContainerRecorder extends ProductContainer {
 
-    ContainerHistory Container;
+    private ContainerHistory Container;
 
     public ProductContainerRecorder(String productName, double capacity, double initialVolume) {
         super(productName, capacity);
@@ -23,7 +23,35 @@ public class ProductContainerRecorder extends ProductContainer {
     }
 
     public String history() {
-///Exercise 30.6: Product Container Recorder, Phase 1
+        return this.Container.toString();
+    }
 
+    public void addToTheContainer(double amount) {
+        super.addToTheContainer(amount);
+        this.Container.add(super.getVolume());
+    }
+
+    public double takeFromTheContainer(double amount) {
+        double r = super.takeFromTheContainer(amount);
+        this.Container.add(super.getVolume());
+        return r;
+    }
+
+    public void printAnalysis() {
+        //product
+        System.out.println("Product: " + super.getName());
+        //History
+        System.out.println("History: " + this.Container.toString());
+        //Greatest product amount: 
+        System.out.println("Greatest product amount: " + this.Container.maxValue());
+        //Smallest product amount: 
+        System.out.println("Smallest product amount: " + this.Container.minValue());
+        //avg
+        System.out.println("Average: " + this.Container.average());
+        //Greatest change: 
+        System.out.println("Greatest change: " + this.Container.greatestFluctuation());
+        //variance
+        System.out.println("Variance: "+this.Container.variance());
+        
     }
 }
