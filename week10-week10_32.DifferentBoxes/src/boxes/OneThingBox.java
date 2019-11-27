@@ -5,30 +5,33 @@
  */
 package boxes;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  *
  * @author Warglaive
  */
 public class OneThingBox extends Box {
 
-    private Thing oneThing;
+    private Collection<Thing> things;
 
     public OneThingBox() {
-        this.oneThing = null;
+        this.things = new ArrayList<Thing>();
     }
 
     @Override
     public void add(Thing thing) {
-        if (this.oneThing == null) {
-            this.oneThing = thing;
+        if (this.things.size() < 1) {
+            this.things.add(thing);
         }
     }
 
     @Override
     public boolean isInTheBox(Thing thing) {
-        if (thing == null || this.oneThing == null) {
-            return false;
+        if (this.things.contains(thing)) {
+            return true;
         }
-        return this.oneThing.equals(thing);
+        return false;
     }
 }

@@ -6,7 +6,7 @@
 package boxes;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 /**
  *
@@ -14,27 +14,60 @@ import java.util.List;
  */
 public class MaxWeightBox extends Box {
 
-    private int maxBoxWeight;
-    private List<Thing> boxOfThings;
+    private int MaxWeight;
+    private Collection<Thing> things;
 
     public MaxWeightBox(int maxWeight) {
-        this.maxBoxWeight = maxWeight;
-        this.boxOfThings = new ArrayList<Thing>();
+        this.MaxWeight = maxWeight;
+        this.things = new ArrayList<Thing>();
     }
 
     @Override
     public void add(Thing thing) {
-        int weightBox = 0;
-        for (Thing t : boxOfThings) {
-            weightBox += t.getWeight();
+        int currentTotalWeight = 0;
+        for (Thing thing1 : things) {
+            currentTotalWeight += thing1.getWeight();
         }
-        if (weightBox + thing.getWeight() <= this.maxBoxWeight) {
-            boxOfThings.add(thing);
+        currentTotalWeight += thing.getWeight();
+        if (currentTotalWeight <= this.MaxWeight) {
+            this.things.add(thing);
         }
     }
 
     @Override
     public boolean isInTheBox(Thing thing) {
-        return boxOfThings.contains(thing);
+        if (this.things.contains(thing)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + this.MaxWeight;
+        hash = 53 * hash + (this.things != null ? this.things.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MaxWeightBox other = (MaxWeightBox) obj;
+        if (this.MaxWeight != other.MaxWeight) {
+            return false;
+        }
+        if (this.things != other.things && (this.things == null || !this.things.equals(other.things))) {
+            return false;
+        }
+        return true;
     }
 }

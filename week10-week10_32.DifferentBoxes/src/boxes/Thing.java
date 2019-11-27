@@ -8,9 +8,8 @@ public class Thing {
     public Thing(String name, int weight) {
 
         this.name = name;
-        if (weight >= 0) {
-            this.weight = weight;
-        } else {
+        this.weight = weight;
+        if (this.weight < 0) {
             throw new IllegalArgumentException();
         }
     }
@@ -23,12 +22,19 @@ public class Thing {
         return name;
     }
 
-    public int getWeight() {
-        return weight;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + (this.name != null ? this.name.hashCode() : 0);
+        //   hash = 89 * hash + this.weight;
+        return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }
@@ -42,10 +48,7 @@ public class Thing {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + (this.name != null ? this.name.hashCode() : 0);
-        return hash;
+    public int getWeight() {
+        return weight;
     }
 }
