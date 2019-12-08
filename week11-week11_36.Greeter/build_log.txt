@@ -42,12 +42,12 @@
 init:
 
 -deps-jar-init:
-   [delete] Deleting: C:\Users\attra\Documents\NetBeansProjects\fontys-sebivenlo-fontys-sebivenlo-PRC12_GROUP4\week11-week11_35.TwoDirectionDictionary\build\built-jar.properties
+   [delete] Deleting: C:\Users\attra\Documents\NetBeansProjects\fontys-sebivenlo-fontys-sebivenlo-PRC12_GROUP4\week11-week11_36.Greeter\build\built-jar.properties
 
 deps-jar:
 
 -warn-already-built-jar:
-[propertyfile] Updating property file: C:\Users\attra\Documents\NetBeansProjects\fontys-sebivenlo-fontys-sebivenlo-PRC12_GROUP4\week11-week11_35.TwoDirectionDictionary\build\built-jar.properties
+[propertyfile] Updating property file: C:\Users\attra\Documents\NetBeansProjects\fontys-sebivenlo-fontys-sebivenlo-PRC12_GROUP4\week11-week11_36.Greeter\build\built-jar.properties
 
 -check-automatic-build:
 
@@ -64,6 +64,9 @@ deps-jar:
 -compile-depend:
 
 -do-compile:
+    [javac] Compiling 1 source file to C:\Users\attra\Documents\NetBeansProjects\fontys-sebivenlo-fontys-sebivenlo-PRC12_GROUP4\week11-week11_36.Greeter\build\classes
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
+    [javac] 1 warning
 
 -post-compile:
 
@@ -76,11 +79,10 @@ compile:
 -compile-test-depend:
 
 -do-compile-test:
-     [copy] Copying 2 files to C:\Users\attra\Documents\NetBeansProjects\fontys-sebivenlo-fontys-sebivenlo-PRC12_GROUP4\week11-week11_35.TwoDirectionDictionary\build\test\classes
 
 -post-compile-test:
 
 compile-test:
 
 BUILD SUCCESSFUL
-Total time: 0 seconds
+Total time: 1 second

@@ -5,7 +5,12 @@
  */
 package dictionary;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  *
@@ -14,9 +19,32 @@ import java.util.HashMap;
 public class MindfulDictionary {
 
     private HashMap<String, String> Dictionary;
+    private String FilePath;
 
     public MindfulDictionary() {
         this.Dictionary = new HashMap<String, String>();
+    }
+
+    public MindfulDictionary(String file) throws FileNotFoundException {
+        this.Dictionary = new HashMap<String, String>();
+        this.FilePath = file;
+    }
+
+    public boolean load() {
+        try {
+            File currentFile = new File(this.FilePath);
+            Scanner fileReader = new Scanner(currentFile);
+            while (fileReader.hasNextLine()) {
+                String line = fileReader.nextLine();
+                String[] parts = line.split(":");
+                String key = parts[0];
+                String value = parts[1];
+                this.add(key, value);
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void add(String word, String translation) {
@@ -53,6 +81,23 @@ public class MindfulDictionary {
                 }
             }
             this.Dictionary.remove(word, this.Dictionary.get(word));
+        }
+    }
+
+    public boolean save() {
+        try {
+            File file = new File(this.FilePath);
+            FileWriter writer = new FileWriter(file);
+            for (String key : this.Dictionary.keySet()) {
+                String Key = key;
+                String value = this.Dictionary.get(Key);
+                String result = key + ":" + value;
+                writer.write(result + "\n");
+            }
+            writer.close();
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }
