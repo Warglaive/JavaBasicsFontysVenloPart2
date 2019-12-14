@@ -11,23 +11,31 @@ public class FileManager {
 
     public List<String> read(String file) throws FileNotFoundException {
         List<String> result = new ArrayList<String>();
-        File fileTo = new File(file);
-        Scanner scanner = new Scanner(fileTo);
+        File currentFile = new File(file);
+        Scanner scanner = new Scanner(currentFile);
         while (scanner.hasNextLine()) {
-            String input = scanner.nextLine();
-            result.add(input);
+            String currentLine = scanner.nextLine();
+            result.add(currentLine);
         }
         return result;
     }
 
     public void save(String file, String text) throws IOException {
-        FileWriter writer = new FileWriter(file);
-        writer.write(text);
-        writer.close();
+        File currentFile = new File(file);
+        FileWriter writer = new FileWriter(currentFile);
+        if (currentFile.exists()) {
+            writer.write(text + "\n");
+            writer.close();
+        } else {
+            currentFile.createNewFile();
+            writer.write(text + "\n");
+            writer.close();
+        }
     }
 
     public void save(String file, List<String> texts) throws IOException {
-        FileWriter writer = new FileWriter(file);
+        File currentFile = new File(file);
+        FileWriter writer = new FileWriter(currentFile);
         for (String text : texts) {
             writer.write(text + "\n");
         }

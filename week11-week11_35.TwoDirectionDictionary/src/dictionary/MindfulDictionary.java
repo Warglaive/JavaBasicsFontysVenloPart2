@@ -21,30 +21,43 @@ public class MindfulDictionary {
     private HashMap<String, String> Dictionary;
     private String FilePath;
 
-    public MindfulDictionary() {
-        this.Dictionary = new HashMap<String, String>();
-    }
-
-    public MindfulDictionary(String file) throws FileNotFoundException {
+    public MindfulDictionary(String file) {
         this.Dictionary = new HashMap<String, String>();
         this.FilePath = file;
+    }
+
+    public boolean save() {
+        try {
+            File currentFile = new File(this.FilePath);
+            FileWriter writer = new FileWriter(currentFile);
+            for (String key : this.Dictionary.keySet()) {
+                writer.write(key + ":" + this.Dictionary.get(key)+"\n");
+            }
+            writer.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean load() {
         try {
             File currentFile = new File(this.FilePath);
-            Scanner fileReader = new Scanner(currentFile);
-            while (fileReader.hasNextLine()) {
-                String line = fileReader.nextLine();
+            Scanner scanner = new Scanner(currentFile);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
                 String[] parts = line.split(":");
-                String key = parts[0];
-                String value = parts[1];
-                this.add(key, value);
+                this.add(parts[0], parts[1]);
             }
             return true;
         } catch (Exception e) {
             return false;
         }
+
+    }
+
+    public MindfulDictionary() {
+        this.Dictionary = new HashMap<String, String>();
     }
 
     public void add(String word, String translation) {
@@ -54,50 +67,27 @@ public class MindfulDictionary {
     }
 
     public String translate(String word) {
-        String result = "";
+        String result = null;
         if (this.Dictionary.get(word) != null) {
             result = this.Dictionary.get(word);
-        } else if (this.Dictionary.values().contains(word)) {
+        } else {
             for (String key : this.Dictionary.keySet()) {
                 if (this.Dictionary.get(key).equals(word)) {
                     result = key;
                 }
             }
-        } else {
-            result = null;
         }
         return result;
     }
 
     public void remove(String word) {
-        int oldSize = this.Dictionary.size();
-        this.Dictionary.remove(word);
-        if (oldSize == this.Dictionary.size()) {
+        if (this.Dictionary.remove(word) == null) {
             for (String key : this.Dictionary.keySet()) {
-                //take word's KEY and remove it by the key
                 if (this.Dictionary.get(key).equals(word)) {
                     this.Dictionary.remove(key);
                     return;
                 }
             }
-            this.Dictionary.remove(word, this.Dictionary.get(word));
-        }
-    }
-
-    public boolean save() {
-        try {
-            File file = new File(this.FilePath);
-            FileWriter writer = new FileWriter(file);
-            for (String key : this.Dictionary.keySet()) {
-                String Key = key;
-                String value = this.Dictionary.get(Key);
-                String result = key + ":" + value;
-                writer.write(result + "\n");
-            }
-            writer.close();
-            return true;
-        } catch (Exception e) {
-            return false;
         }
     }
 }

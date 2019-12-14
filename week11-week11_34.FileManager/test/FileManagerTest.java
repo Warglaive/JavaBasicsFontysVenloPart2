@@ -13,7 +13,7 @@ public class FileManagerTest {
 
     @Points("34.1")
     @Test
-    public void readsLines1() throws FileNotFoundException, IOException {
+    public void readsLines1() throws FileNotFoundException {
         ArrayList<String> tekstit = new ArrayList<String>();
         tekstit.add("eka");
         tekstit.add("toka");
@@ -22,7 +22,7 @@ public class FileManagerTest {
 
     @Points("34.1")
     @Test
-    public void readsLines2() throws FileNotFoundException, IOException {
+    public void readsLines2() throws FileNotFoundException {
         ArrayList<String> tekstit = new ArrayList<String>();
         tekstit.add("yy");
         tekstit.add("kaa");
@@ -130,11 +130,12 @@ public class FileManagerTest {
                 + k, tekstit, rivit);
     }
 
-    private void rivienLuku(ArrayList<String> tekstit, String tiedosto, String td) throws FileNotFoundException, IOException {
+    private void rivienLuku(ArrayList<String> tekstit, String tiedosto, String td) throws FileNotFoundException {
         String sisalto = "";
         for (String teksti : tekstit) {
             sisalto += teksti + "\n";
         }
+
         FileManager t = new FileManager();
         List<String> luettu = t.read(td);
 
@@ -148,6 +149,5 @@ public class FileManagerTest {
         assertEquals("Content of file " + tiedosto + ":\n" + sisalto + "\n"
                 + "Returned list wrong with code\n"
                 + k, tekstit, luettu);
-
     }
 }
